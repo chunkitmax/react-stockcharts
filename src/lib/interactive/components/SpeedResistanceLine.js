@@ -192,14 +192,14 @@ function helper(props, moreProps) {
 		const twoThirdY = getLineCoordinates(
 			startXY,
 			x2,
-			y1 + dy / 2,
-			"2/1"
+			y1 + dy * 2 / 3,
+			"2/3"
 		);
 		const oneThirdY = getLineCoordinates(
 			startXY,
 			x2,
 			y1 + dy / 3,
-			"3/1"
+			"1/3"
 		);
 		const lines = [
 			{ start: startXY, end: endXY, text: "1/1" },

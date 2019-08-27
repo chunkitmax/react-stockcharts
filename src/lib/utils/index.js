@@ -307,7 +307,6 @@ export function mapObject(object = {}, iteratee = identity) {
 	let result = new Array(props.length);
 
 	props.forEach((key, index) => {
-    console.log(object[key], key, object)
 		result[index] = iteratee(object[key], key, object);
 	});
 	return result;
