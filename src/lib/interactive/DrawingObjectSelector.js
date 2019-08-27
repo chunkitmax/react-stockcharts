@@ -62,7 +62,8 @@ class DrawingObjectSelector extends Component {
 				&& Array.isArray(valueArray)
 				&& valueArray.length > 0;
 			if (valuePresent) {
-				// console.log("Value present for ", each.type, each.chartId);
+				console.log("Value present for ", each.type, each.chartId);
+				console.log(moreProps);
 				const morePropsForChart = getMorePropsForChart(
 					moreProps, each.chartId
 				);
