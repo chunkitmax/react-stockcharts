@@ -22,17 +22,19 @@ class VISeries extends Component {
 	}
 	render() {
 		const { className } = this.props;
-		const { stroke } = this.props;
+		const { stroke, strokeWidth } = this.props;
 
 		return (
 			<g className={className}>
 				<LineSeries
 					yAccessor={this.yAccessorForvmPlus}
 					stroke={stroke.vmPlus}
+					strokeWidth={strokeWidth}
 					fill="none" />
 				<LineSeries
 					yAccessor={this.yAccessorForvmMinus}
 					stroke={stroke.vmMinus}
+					strokeWidth={strokeWidth}
 					fill="none" />
 			</g>
 		);
@@ -47,13 +49,13 @@ VISeries.propTypes = {
 		vmMinus: PropTypes.string.isRequired,
 	}).isRequired,
 	widthRatio: PropTypes.number,
-	width: BarSeries.propTypes.width,
+	strokeWidth: PropTypes.number
 };
 
 VISeries.defaultProps = {
 	className: "react-stockcharts-vi-series",
 	widthRatio: 0.5,
-	width: BarSeries.defaultProps.width,
+	strokeWidth: LineSeries.defaultProps.strokeWidth
 };
 
 export default VISeries;
