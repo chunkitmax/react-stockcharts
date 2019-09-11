@@ -8,6 +8,7 @@ export { default as kagi } from "./kagi";
 export { default as pointAndFigure } from "./pointAndFigure";
 export { default as renko } from "./renko";
 export { default as macd } from "./macd";
+export { default as vi } from "./vi";
 export { default as rsi } from "./rsi";
 export { default as sto } from "./sto";
 export { default as atr } from "./atr";

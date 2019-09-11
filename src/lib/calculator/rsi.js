@@ -72,7 +72,7 @@ export default function() {
 					gain: Math.max(change, 0),
 					loss: Math.abs(Math.min(change, 0)),
 				};
-			});
+      });
 
 		const gainsAndLosses = gainsAndLossesCalculator(data);
 

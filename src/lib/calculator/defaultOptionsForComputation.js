@@ -61,6 +61,12 @@ export const FullStochasticOscillator = {
 	dWindowSize: 3,
 };
 
+export const VI = {
+	windowSize: 14,
+	// source: d => d.close, // "high", "low", "open", "close"
+	// sourcePath: "close", // "high", "low", "open", "close"
+};
+
 export const RSI = {
 	windowSize: 14,
 	// source: d => d.close, // "high", "low", "open", "close"

@@ -16,6 +16,7 @@ export { default as PointAndFigureSeries } from "./PointAndFigureSeries";
 export { default as RenkoSeries } from "./RenkoSeries";
 export { default as MACDSeries } from "./MACDSeries";
 export { default as BollingerSeries } from "./BollingerSeries";
+export { default as VISeries } from "./VISeries";
 export { default as RSISeries } from "./RSISeries";
 export { default as StochasticSeries } from "./StochasticSeries";
 export { default as ElderRaySeries } from "./ElderRaySeries";
