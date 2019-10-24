@@ -1,6 +1,6 @@
 
 
-import { sum } from "d3-array";
+import { sum, mean } from "d3-array";
 
 import { slidingWindow } from "../utils";
 import { VI as defaultOptions } from "./defaultOptionsForComputation";
@@ -10,7 +10,14 @@ export default function() {
 	let options = defaultOptions;
 
 	function calculator(data) {
-		const { windowSize } = options;
+		const { windowSize, smaWindowSize } = options;
+
+		const average = slidingWindow()
+			.windowSize(smaWindowSize)
+			.accumulator(values => ({
+				vmPlus: mean(values.map(v => v.vmPlus)),
+				vmMinus: mean(values.map(v => v.vmMinus))
+			}));
 
 		const viAlgorithm = slidingWindow()
 			.windowSize(windowSize)
@@ -45,7 +52,7 @@ export default function() {
 				};
 			});
 
-		const viData = viAlgorithm(setupCalculator(data));
+		const viData = average(viAlgorithm(setupCalculator(data)));
 
 		return viData;
 	}
