@@ -49,7 +49,7 @@ function buildConfig(mode) {
 		devtool: ifWatch("cheap-source-map", "sourcemap"),
 		module: {
 			loaders: removeEmpty([
-				// { test: /\.json$/, loader: "json" },
+				{ test: /\.json$/, loader: "json" },
 				{ test: /\.(js|jsx)$/, loaders: ["babel-loader"], exclude: /node_modules/ },
 				...loadersForDocs,
 			])
