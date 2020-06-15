@@ -126,11 +126,6 @@ class HoverTextNearMouse extends Component {
 	}
 }
 
-const numberOrString = PropTypes.oneOfType([
-	PropTypes.number,
-	PropTypes.oneOf(["auto"]),
-]);
-
 HoverTextNearMouse.propTypes = {
 	fontFamily: PropTypes.string.isRequired,
 	fontSize: PropTypes.number.isRequired,
@@ -138,8 +133,14 @@ HoverTextNearMouse.propTypes = {
 	text: PropTypes.string.isRequired,
 	bgFill: PropTypes.string.isRequired,
 	bgOpacity: PropTypes.number.isRequired,
-	bgWidth: numberOrString.isRequired,
-	bgHeight: numberOrString.isRequired,
+	bgWidth: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.oneOf(["auto"]),
+	]).isRequired,
+	bgHeight: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.oneOf(["auto"]),
+	]).isRequired,
 	show: PropTypes.bool.isRequired,
 };
 

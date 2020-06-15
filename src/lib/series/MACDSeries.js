@@ -82,7 +82,10 @@ MACDSeries.propTypes = {
 		divergence: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
 	}).isRequired,
 	widthRatio: PropTypes.number,
-	width: BarSeries.propTypes.width,
+	width: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.func
+	]),
 };
 
 MACDSeries.defaultProps = {

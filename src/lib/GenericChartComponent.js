@@ -5,6 +5,8 @@ import GenericComponent from "./GenericComponent";
 import {
 	isDefined,
 	find,
+	noop,
+	functor,
 } from "./utils";
 
 const ALWAYS_TRUE_TYPES = [
@@ -109,9 +111,63 @@ class GenericChartComponent extends GenericComponent {
 	}
 }
 
-GenericChartComponent.propTypes = GenericComponent.propTypes;
+GenericChartComponent.propTypes = {
+	svgDraw: PropTypes.func.isRequired,
+	canvasDraw: PropTypes.func,
 
-GenericChartComponent.defaultProps = GenericComponent.defaultProps;
+	drawOn: PropTypes.array.isRequired,
+
+	clip: PropTypes.bool.isRequired,
+	edgeClip: PropTypes.bool.isRequired,
+	interactiveCursorClass: PropTypes.string,
+
+	selected: PropTypes.bool.isRequired,
+	enableDragOnHover: PropTypes.bool.isRequired,
+	disablePan: PropTypes.bool.isRequired,
+
+	canvasToDraw: PropTypes.func.isRequired,
+
+	isHover: PropTypes.func,
+
+	onClick: PropTypes.func,
+	onClickWhenHover: PropTypes.func,
+	onClickOutside: PropTypes.func,
+
+	onPan: PropTypes.func,
+	onPanEnd: PropTypes.func,
+	onDragStart: PropTypes.func,
+	onDrag: PropTypes.func,
+	onDragComplete: PropTypes.func,
+	onDoubleClick: PropTypes.func,
+	onDoubleClickWhenHover: PropTypes.func,
+	onContextMenu: PropTypes.func,
+	onContextMenuWhenHover: PropTypes.func,
+	onMouseMove: PropTypes.func,
+	onMouseDown: PropTypes.func,
+	onHover: PropTypes.func,
+	onUnHover: PropTypes.func,
+
+	debug: PropTypes.func,
+	// owner: PropTypes.string.isRequired,
+};
+
+GenericChartComponent.defaultProps = {
+	svgDraw: functor(null),
+	draw: [],
+	canvasToDraw: contexts => contexts.mouseCoord,
+	clip: true,
+	edgeClip: false,
+	selected: false,
+	disablePan: false,
+	enableDragOnHover: false,
+
+	onClickWhenHover: noop,
+	onClickOutside: noop,
+	onDragStart: noop,
+	onMouseMove: noop,
+	onMouseDown: noop,
+	debug: noop,
+};
 
 GenericChartComponent.contextTypes = {
 	...GenericComponent.contextTypes,

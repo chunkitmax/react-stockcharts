@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import BarSeries from "./BarSeries";
+// import BarSeries from "./BarSeries";
 import LineSeries from "./LineSeries";
 
 class VISeries extends Component {
