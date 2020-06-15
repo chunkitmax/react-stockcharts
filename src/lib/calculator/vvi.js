@@ -3,7 +3,8 @@
 import { sum, mean } from "d3-array";
 
 import { slidingWindow } from "../utils";
-import { VI as defaultOptions } from "./defaultOptionsForComputation";
+import { vvi as defaultOptions } from "./defaultOptionsForComputation";
+import ema from "react-stockcharts/lib/calculator/ema";
 
 export default function() {
 
@@ -17,9 +18,9 @@ export default function() {
 			.accumulator(values => ({
 				vmPlus: mean(values.map(v => v.vmPlus)),
 				vmMinus: mean(values.map(v => v.vmMinus))
-			}));
+      }));
 
-		const viAlgorithm = slidingWindow()
+		const vviAlgorithm = slidingWindow()
 			.windowSize(windowSize)
 			.accumulator((values) => {
 
@@ -46,15 +47,15 @@ export default function() {
 						cur.high - cur.low,
 						Math.abs(cur.low - prev.close),
 						Math.abs(cur.high - prev.close)
-					),
-					vmUp: Math.abs(cur.high - prev.low),
-					vmDown: Math.abs(cur.low - prev.high)
+					)*cur.volume,
+					vmUp: Math.abs(cur.high - prev.low)*cur.volume,
+					vmDown: Math.abs(cur.low - prev.high)*cur.volume
 				};
 			});
 
-		const viData = average(viAlgorithm(setupCalculator(data))).map(v => v && ({ vmPlus: v.vmPlus - 1., vmMinus: v.vmMinus - 1. }));
+		const vviData = average(vviAlgorithm(setupCalculator(data))).map(v => v && ({ vmPlus: v.vmPlus - 1., vmMinus: v.vmMinus - 1. }));
 
-		return viData;
+		return vviData;
 	}
 	calculator.undefinedLength = function() {
 		const { windowSize } = options;

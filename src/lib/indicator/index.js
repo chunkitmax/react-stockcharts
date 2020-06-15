@@ -1,3 +1,5 @@
+import * as defaultOptionsForComputation from "../calculator/defaultOptionsForComputation";
+import * as defaultOptionsForAppearance from "./defaultOptionsForAppearance";
 
 export { default as ema } from "./ema";
 export { default as sma } from "./sma";
@@ -10,6 +12,7 @@ export { default as pointAndFigure } from "./pointAndFigure";
 export { default as renko } from "./renko";
 export { default as macd } from "./macd";
 export { default as vi } from "./vi";
+export { default as vvi } from "./vvi";
 export { default as rsi } from "./rsi";
 export { default as atr } from "./atr";
 export { default as stochasticOscillator } from "./stochasticOscillator";
@@ -19,9 +22,6 @@ export { default as elderRay } from "./elderRay";
 export { default as change } from "./change";
 export { default as elderImpulse } from "./elderImpulse";
 export { default as compare } from "./compare";
-
-import * as defaultOptionsForComputation from "../calculator/defaultOptionsForComputation";
-import * as defaultOptionsForAppearance from "./defaultOptionsForAppearance";
 
 export {
 	defaultOptionsForComputation,
