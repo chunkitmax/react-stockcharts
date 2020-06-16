@@ -11,14 +11,16 @@ export default function() {
 	let options = defaultOptions;
 
 	function calculator(data) {
-		const { windowSize, smaWindowSize } = options;
+		const { windowSize, emaWindowSize } = options;
 
-		const average = slidingWindow()
-			.windowSize(smaWindowSize)
-			.accumulator(values => ({
-				vmPlus: mean(values.map(v => v.vmPlus)),
-				vmMinus: mean(values.map(v => v.vmMinus))
-      }));
+    const emaAlgorithm = values => {
+        const vmPlus = ema().options({ windowSize: emaWindowSize, sourcePath: 'vmPlus' })(values),
+              vmMinus = ema().options({ windowSize: emaWindowSize, sourcePath: 'vmMinus' })(values)
+        return vmPlus.map((vp, i) => ({
+          vmPlus: vp - 1.,
+          vmMinus: vmMinus[i] - 1.
+        }))
+      };
 
 		const vviAlgorithm = slidingWindow()
 			.windowSize(windowSize)
@@ -51,11 +53,9 @@ export default function() {
 					vmUp: Math.abs(cur.high - prev.low)*cur.volume,
 					vmDown: Math.abs(cur.low - prev.high)*cur.volume
 				};
-			});
+      });
 
-		const vviData = average(vviAlgorithm(setupCalculator(data))).map(v => v && ({ vmPlus: v.vmPlus - 1., vmMinus: v.vmMinus - 1. }));
-
-		return vviData;
+		return emaAlgorithm(vviAlgorithm(setupCalculator(data)));
 	}
 	calculator.undefinedLength = function() {
 		const { windowSize } = options;
